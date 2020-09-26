@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="android.graphics.Color" />
+
+        <variable
+            name="viewModel"
+            type="com.xxx.wordingtech.ui.mine.MineViewModel" />
+
+    </data>
+
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/rootLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:theme="@style/AppTheme">
+
+
+        <ImageView
+            android:id="@+id/iv"
+            imageUrl="@{viewModel.userProfileLiveData.background}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:foreground="#27000000"
+            android:scaleType="centerCrop"
+            app:layout_collapseMode="parallax"
+            app:layout_collapseParallaxMultiplier="0.8"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/bg_design" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="#16000000"
+            app:layout_collapseMode="parallax"
+            app:layout_collapseParallaxMultiplier="0.7">
+
+            <TextView
+                android:id="@+id/tv_about_me"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:padding="4dp"
+                android:text='@{"uid: "+viewModel.userProfileLiveData.uid}'
+                android:textColor="#FAFAFA"
+                android:textSize="16sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="uid" />
+
+            <ImageView
+                android:id="@+id/im_setting"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_margin="24dp"
+                android:src="@drawable/icon_setting"
+                android:tint="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_center"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="64dp"
+                android:elevation="1dp"
+                android:padding="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_about_me">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/potrait"
+                    imageUrl="@{viewModel.userProfileLiveData.avatar}"
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:layout_marginTop="16dp"
+                    app:civ_border_color="@color/white"
+                    app:civ_border_width="2dp"
+                    app:layout_behavior=".ui.home.mine.TransferHeaderBehavior"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@drawable/icon_mine"
+                    tools:targetApi="lollipop" />
+
+                <ImageView
+                    android:id="@+id/im_gender"
+                    gender="@{viewModel.userProfileLiveData.gender}"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:background="@drawable/corner_border_gray"
+                    android:backgroundTint="@color/black"
+                    android:contentDescription="im_gender"
+                    android:padding="4dp"
+                    android:tint="@color/white"
+                    app:layout_constraintBottom_toBottomOf="@+id/potrait"
+                    app:layout_constraintEnd_toEndOf="@+id/potrait"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="start"
+                    android:text="@{viewModel.userProfileLiveData.nikeName}"
+                    android:textColor="@color/white"
+                    android:textSize="24sp"
+                    android:textStyle="normal|bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/potrait"
+                    app:layout_constraintTop_toTopOf="@+id/potrait"
+                    tools:text="昵称" />
+
+                <TextView
+                    android:id="@+id/tv_content"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="start"
+                    android:maxEms="10"
+                    android:singleLine="false"
+                    android:text="@{viewModel.userProfileLiveData.signature}"
+                    android:textColor="@color/white"
+                    android:textSize="18dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tv_name"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_name"
+                    tools:text="签名签名签名签名签名签名签名签名签名签名" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="32dp"
+                app:cardBackgroundColor="#57000000"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="0dp"
+                app:layout_constraintTop_toBottomOf="@+id/cl_center"
+                tools:layout_editor_absoluteX="32dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tv_help"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="帮助与反馈"
+                        android:padding="16dp"
+                        android:textColor="@color/white"
+                        style="@style/Button.Primary"
+                        android:textSize="18sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_word_test"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/tv_help"
+                        android:layout_marginTop="8dp"
+                        android:text="词汇量测试"
+                        android:padding="16dp"
+                        android:textColor="@color/white"
+                        style="@style/Button.Primary"
+                        android:textSize="18sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <FrameLayout
+            android:id="@+id/fl_collection"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:behavior_peekHeight="300dp"
+            app:layout_behavior=".ui.widget.MyViewPagerBottomSheetBehavior"/>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_shop"
+        android:icon="@drawable/icon_shop"
+        android:title="周边"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_listen"
+        android:icon="@drawable/icon_listen"
+        android:title="听力"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_word"
+        android:icon="@drawable/icon_word"
+        android:title="单词"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_find"
+        android:icon="@drawable/icon_find"
+        android:title="发现"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_mine"
+        android:icon="@drawable/icon_mine"
+        android:title="我的"
+        app:showAsAction="always" />
+
+</menu>
